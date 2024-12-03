@@ -28,9 +28,9 @@ void show_calculator(){
 }
 void display_output(double answer){
     cout<<"----------------------------------------------------------------------"<<endl;
-    cout<<"                                           ---------------------------"<<endl;
-    cout<<"     CURRENT                              |                           "<<endl;
-    cout<<"     OUTPUT IS :                          |                   "<<answer<<endl;
+    cout<<"                                          ----------------------------"<<endl;
+    cout<<"     CURRENT                             |                            "<<endl;
+    cout<<"     OUTPUT IS :                         |                    "<<answer<<endl;
     cout<<"                                          ----------------------------"<<endl;
     cout<<"----------------------------------------------------------------------"<<endl;
     cout<<"          +          |            -            |            *         "<<endl;
@@ -40,7 +40,7 @@ void display_output(double answer){
     cout<<"        Devide       |           Mod           |           Log        "<<endl;
     cout<<"----------------------------------------------------------------------"<<endl;
     cout<<"          S          |            C            |            P         "<<endl;
-    cout<<"        Square       |          Cube           |          Power       "<<endl;
+    cout<<"        Square       |           Cube          |          Power       "<<endl;
     cout<<"----------------------------------------------------------------------"<<endl;
     cout<<"          s          |            c            |            t         "<<endl;
     cout<<"         sin         |           cos           |           tan        "<<endl;
@@ -56,14 +56,31 @@ int main(){
 
     double answer = 0.0;
     char inp ='\n';
-    show_calculator();
+    bool converter = 0;
     while(inp!='.'){
-        cout<<"Enter: ";
+            if(converter == 1){
+                      cout<<"Enter: ";
         cin>>inp;
-        //decision
-        //of whether we want to variables as input or one
-        if(inp =='+' || inp == '-' || inp == '*' || inp == '/' || inp == 'm' || inp == 'p'){
-            cout<<"Enter num1: ";
+        if(inp =='+' || inp == '-' || inp == '*' || inp == '/' || inp == 'M' || inp == 'p'){
+                num1=answer;
+
+
+            cout<<"Enter Num2: ";
+            cin>>num2;
+
+        }else if(inp == 'k' || inp == '.'){
+            //just don't take any input
+        }else{
+            num1 = answer;
+
+        }//if we want to display the output we will take one input
+
+            }else{
+                show_calculator();//if we want to show basic calculator we will take two inputs
+                  cout<<"Enter: ";
+        cin>>inp;
+        if(inp =='+' || inp == '-' || inp == '*' || inp == '/' || inp == 'M' || inp == 'p'){
+            cout<<"Enter Num1: ";
             cin>>num1;
 
             cout<<"Enter Num2: ";
@@ -72,9 +89,12 @@ int main(){
         }else if(inp == 'k' || inp == '.'){
             //just don't take any input
         }else{
-            cout<<"Enter Num1";
+            cout<<"Enter Num1:";
             cin>>num1;
         }
+        converter = 1;
+            }
+
         switch(inp){
         case '+':
             answer = num1+num2;
@@ -88,7 +108,7 @@ int main(){
         case '/':
             answer = num1/num2;
             break;
-        case 'm':
+        case 'M':
             answer = int(num1) % int(num2);
             break;
         case 'L':
@@ -116,6 +136,7 @@ int main(){
             answer = sqrt(num1);
             break;
         case 'k':
+            converter = 0;
             break;
         case '.':
             break;
